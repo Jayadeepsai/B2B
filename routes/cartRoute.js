@@ -80,15 +80,49 @@ router.post("/AddToCart",Auth,  async (req, res) => {
         try {
           const cart = await Cart.findOne({ owner });
           if (cart && cart.items.length > 0) {
-            res.status(200).send(cart);
+            res.status(200).json({
+                cart ,
+                totalCount: cart.items.length });
+            
           } else {
-            res.send(null);
+            res.status(201).json({
+                message:"No items in the Cart"
+            });
           }
         } catch (error) {
           res.status(500).send();
         }
       });
 
-
+      router.delete("/cart/", Auth, async (req, res) => {
+        const owner = req.user._id;
+       const itemId = req.query.itemId;
+        try {
+          let cart = await Cart.findOne({ owner });
+      
+          const itemIndex = cart.items.findIndex((item) => item.itemId == itemId);
+          
+          if (itemIndex > -1) {
+            let item = cart.items[itemIndex];
+            cart.bill -= item.quantity * item.price;
+            if(cart.bill < 0) {
+                cart.bill = 0
+            } 
+            cart.items.splice(itemIndex, 1);
+            cart.bill = cart.items.reduce((acc, curr) => {
+              return acc + curr.quantity * curr.price;
+          },0)
+            cart = await cart.save();
+      
+            res.status(200).send(cart);
+          } else {
+          res.status(404).send("item not found");
+          }
+        } catch (error) {
+          console.log(error);
+          res.status(400).send();
+        }
+      });
+      
 
 module.exports=router

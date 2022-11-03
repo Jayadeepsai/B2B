@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router(); 
 const mongoose = require('mongoose');
+const Auth = require('../middleware/auth')
 
 const Item =require('../models/item')
 
-router.post('/create',(req,res,next)=>{
+router.post('/create',Auth,(req,res,next)=>{
  
     const item = new Item(req.body)
 
