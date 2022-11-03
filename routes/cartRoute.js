@@ -94,6 +94,9 @@ router.post("/AddToCart",Auth,  async (req, res) => {
         }
       });
 
+
+
+      
       router.delete("/cart/", Auth, async (req, res) => {
         const owner = req.user._id;
        const itemId = req.query.itemId;
