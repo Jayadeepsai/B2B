@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router(); 
 const mongoose = require('mongoose');
-const Auth = require('../middleware/auth')
+const Auth = require('c:/Users/jayad/Desktop/B2B/middleware/auth')
 
-const Item =require('../models/item')
+const Item =require('c:/Users/jayad/Desktop/B2B/Models/item')
 
 
 router.get('/items', async(req, res) => {

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const ObjectID = mongoose.Schema.Types.ObjectId
-const user = require('./user')
-const item = require('./item')
+const user = require('c:/Users/jayad/Desktop/B2B/Models/user')
+const item = require('c:/Users/jayad/Desktop/B2B/Models/item')
 
 const cartSchema = new mongoose.Schema({
     owner : {

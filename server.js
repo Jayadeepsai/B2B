@@ -1,5 +1,5 @@
 const http = require('http');
-const app = require('./app')
+const app = require('c:/Users/jayad/Desktop/B2B/app')
 
 const port = process.env.PORT || 7000;
 

@@ -5,9 +5,9 @@ const bcryptjs = require('bcryptjs')
 const mongoose = require('mongoose')
 const jsonwebtoken = require('jsonwebtoken')
 
-const userRoutes = require('./routes/userRoute')
-const itemRoutes = require('./routes/itemRoute')
-const cartRoutes = require('./routes/cartRoute')
+const userRoutes = require('c:/Users/jayad/Desktop/B2B/routes/userRoute')
+const itemRoutes = require('c:/Users/jayad/Desktop/B2B/routes/itemRoute')
+const cartRoutes = require('c:/Users/jayad/Desktop/B2B/routes/cartRoute')
 
 
 
