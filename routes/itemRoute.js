@@ -30,6 +30,22 @@ router.get('/items/:id', async(req, res) => {
     }
 })
 
+//Search Item by name 
+
+router.get('/itemsByName/:name',async(req,res)=>{
+    try{
+       
+        const item= await Item.find({name:req.params.name})
+        if(!item){
+            res.status(404).send({error: "Item not found"})
+        }
+        res.status(400).json({item})
+    }catch(error){
+        res.status(400).json({error})
+        console.log(error)
+    }
+})
+
 
 router.post('/create',Auth,(req,res,next)=>{
  
@@ -49,7 +65,7 @@ router.post('/create',Auth,(req,res,next)=>{
 
 })
 
-router.patch('/items/:id', Auth, async(req, res) => {
+router.put('/items/:id', Auth, async(req, res) => {
     const updates = Object.keys(req.body)
     const allowedUpdates = ['name', 'description', 'category', 'price']
 
