@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router(); 
 const mongoose = require('mongoose');
 const Auth = require('c:/Users/jayad/Desktop/B2B/middleware/auth')
+const multer =require('multer')
 
 const Item =require('c:/Users/jayad/Desktop/B2B/Models/item')
 
@@ -34,7 +35,7 @@ router.get('/items/:id', async(req, res) => {
 
 router.get('/itemsByName/:name',async(req,res)=>{
     try{
-       
+        
         const item= await Item.find({name:req.params.name})
         if(!item){
             res.status(404).send({error: "Item not found"})
@@ -49,7 +50,14 @@ router.get('/itemsByName/:name',async(req,res)=>{
 
 router.post('/create',Auth,(req,res,next)=>{
  
-    const item = new Item(req.body)
+    const item = new Item({
+     owner:req.body.owner,
+     name:req.body.name,
+     description:req.body.description,
+     category:req.body.category,
+     price:req.body.price,
+     image:req.body.image
+    })
 
     item.save()
     .then(result => {
@@ -67,7 +75,7 @@ router.post('/create',Auth,(req,res,next)=>{
 
 router.put('/items/:id', Auth, async(req, res) => {
     const updates = Object.keys(req.body)
-    const allowedUpdates = ['name', 'description', 'category', 'price']
+    const allowedUpdates = ['name', 'description', 'category', 'price', 'image']
 
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
 

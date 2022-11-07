@@ -24,7 +24,12 @@ const itemSchema = new mongoose.Schema({
     price: {
        type: Number,
        required: true
-    }
+    },
+    image:{
+       
+       type:String,
+       required:true
+    },
     }, {
     timestamps: true
     })
