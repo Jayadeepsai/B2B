@@ -124,7 +124,8 @@ router.put('/items/:id', Auth, async(req, res) => {
 
         updates.forEach((update) => item[update] = req.body[update])
         await item.save()
-        res.send(item)
+        res.status(200).json({message:'Item updated',
+    item})
     } catch (error) {
         res.status(400).send(error)
     }

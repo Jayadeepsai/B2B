@@ -32,10 +32,11 @@ router.post("/AddToCart",Auth,  async (req, res) => {
         const cart = await Cart.findOne({ owner });
         const item = await Item.findOne({ _id: itemId });
     if (!item) {
-        res.status(404).send({ message: "item not found" });
+        res.status(404).json({ message: "item not found" });
         return;
     }
         const price = item.price;
+        const UPC_code=item.UPC_code;
         const name = item.name;
         const image =item.image;
     //If cart already exists for user,
@@ -52,7 +53,7 @@ router.post("/AddToCart",Auth,  async (req, res) => {
        await cart.save();
        res.status(200).send(cart);
     } else {
-       cart.items.push({ itemId, name,image, quantity, price });
+       cart.items.push({ itemId,UPC_code, name,image, quantity, price });
        cart.bill = cart.items.reduce((acc, curr) => {
        return acc + curr.quantity * curr.price;
     },0)
@@ -63,7 +64,7 @@ router.post("/AddToCart",Auth,  async (req, res) => {
     //no cart exists, create one
     const newCart = await Cart.create({
        owner,
-       items: [{ itemId, name,image, quantity, price }],
+       items: [{ itemId,UPC_code, name,image, quantity, price }],
         bill: quantity * price,
     });
     return res.status(201).send(newCart);

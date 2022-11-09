@@ -15,6 +15,7 @@ const cartSchema = new mongoose.Schema({
        ref: 'Item',
        required: true
     },
+    UPC_code:Number,
     name: String,
     image:String,
     quantity: {
