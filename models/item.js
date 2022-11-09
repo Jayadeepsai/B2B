@@ -8,6 +8,12 @@ const itemSchema = new mongoose.Schema({
        required: true,
        ref: 'User'
     },
+    UPC_code:{
+      type:Number,
+      required:true
+      
+
+    },
     name: {
        type: String,
        required: true,
@@ -24,6 +30,12 @@ const itemSchema = new mongoose.Schema({
     price: {
        type: Number,
        required: true
+    },
+    quantity:{
+      type:Number,
+      required:true,
+      min:1,
+      default:1
     },
     image:{
        

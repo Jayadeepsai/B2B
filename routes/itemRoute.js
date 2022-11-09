@@ -48,14 +48,46 @@ router.get('/itemsByName/:name',async(req,res)=>{
 })
 
 
+router.get('/itemsByUPC/:UPC_code',async(req,res)=>{
+    try{
+        
+        const item= await Item.find({UPC_code:req.params.UPC_code})
+        if(!item){
+            res.status(404).send({error: "Item not found"})
+        }
+        res.status(400).json({item})
+    }catch(error){
+        res.status(400).json({error})
+        console.log(error)
+    }
+})
+
+//search items by letter
+
+router.get('/searchByLetter/:key',async(req,res)=>{
+     const data = await Item.find (
+        {
+            "$or":[
+                {name:{$regex:req.params.key}}
+            ]
+        }
+     )
+     res.status(200).json({
+        data
+     })
+})
+
+
 router.post('/create',Auth,(req,res,next)=>{
  
     const item = new Item({
      owner:req.body.owner,
+     UPC_code:req.body.UPC_code,
      name:req.body.name,
      description:req.body.description,
      category:req.body.category,
      price:req.body.price,
+     quantity:req.body.quantity,
      image:req.body.image
     })
 
