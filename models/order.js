@@ -3,7 +3,7 @@ const objectId = mongoose.Schema.Types.ObjectId
 
 
 const orderSchema = new mongoose.Schema({
-    item: [{
+    items: [{
         itemId: {
          type: objectId,
          ref: 'Item',

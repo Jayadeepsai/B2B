@@ -36,6 +36,12 @@ const userSchema = new mongoose.Schema({
           }
        }
     },
+
+    Address:{
+        type:String,
+        required:true
+    },
+
     tokens: [{
       token: {
       type: String,
