@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const ObjectID = mongoose.Schema.Types.ObjectId
-const user = require('c:/Users/jayad/Desktop/B2B/Models/user')
+const user = require('../models/user')
 
 const itemSchema = new mongoose.Schema({
     owner : {
