@@ -8,6 +8,7 @@ const jsonwebtoken = require('jsonwebtoken')
 const userRoutes = require('c:/Users/jayad/Desktop/B2B/routes/userRoute')
 const itemRoutes = require('c:/Users/jayad/Desktop/B2B/routes/itemRoute')
 const cartRoutes = require('c:/Users/jayad/Desktop/B2B/routes/cartRoute')
+const addressRoutes = require('./routes/addressRoute')
 
 
 
@@ -38,5 +39,6 @@ app.use(bodyParser.json());
 app.use('/userRoutes',userRoutes)
 app.use('/itemRoutes' ,itemRoutes)
 app.use('/cartRoutes',cartRoutes)
+app.use('/addressRoutes',addressRoutes)
 
 module.exports =app
