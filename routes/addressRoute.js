@@ -1,11 +1,11 @@
 const express = require('express');
 const Address = require('../models/address');
-const Addreess = require('../models/address')
+                   
 
 const router = new express.Router()
 
 router.post('/postAddress', async (req, res) => {
-    const address = new Addreess(req.body)
+    const address = new Address(req.body)
     try {
         await address.save()
        

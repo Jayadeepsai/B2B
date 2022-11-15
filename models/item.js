@@ -11,8 +11,6 @@ const itemSchema = new mongoose.Schema({
     UPC_code:{
       type:Number,
       required:true
-      
-
     },
     name: {
        type: String,
